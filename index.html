@@ -1,0 +1,108 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+
+        <div class="soal">
+            <div class="soal2">
+
+                <span id="soal" style="font-size: 22px;">
+                ...
+                </span>
+                <br>
+                <div id="javabha" class="soal3">
+                    <input type="radio" name="javab" id="j1" > <label for="j1" id="jj1" > زمین 40000 کیلومتر</label>
+                    <br>
+                    <br>
+                    <input type="radio" name="javab" id="j2" > <label for="j2" id="jj2"> زمین 1000 کیلومتر</label>
+                    <br>
+                    <br>
+                    <input type="radio" name="javab" id="j3" > <label for="j3" id="jj3"> زمین 200000 کیلومتر</label>
+                    <br>
+                    <br>
+                    <input type="radio" name="javab"     id="j4" > <label for="j4" id="jj4"> زمین 50000 کیلومتر</label>
+                </div>
+            </div>
+            <button class="dokme1" onclick="ejra()" id ="dokme" >
+            ارسال
+            </button>
+        </div>
+
+        <script>
+            var soal =['کدام زبان در پلتفرم وب اجرا میشود؟',
+            'کدام زبان برنامه نویسی نیست؟',
+            'با اچ تی ام ال کدام کار را نمیشود انجام داد؟',
+            'جاوا اسکریپت چه زمانی به وجود آمد؟'];
+
+
+            var javab = [['جاوا','سی','پایتون','جاوا اسکریپت',3],
+            ['HTML','JAVA','JS','GO',0],
+            ['طراحی صفحات وب','برنامه نویسی ویندوز','اپلیکیشن PWA','برنامه تحت وب',1],
+            ['1996','1995','1994','2000',1],
+            ];
+
+            var soal_html= document.getElementById("soal");
+            var javab1 = document.getElementById("jj1");
+            var javab2 = document.getElementById("jj2");
+            var javab3 = document.getElementById("jj3");
+            var javab4 = document.getElementById("jj4");
+
+            soal_html.innerText= soal[0];
+            javab1.innerText= javab[0][0];
+            javab2.innerText= javab[0][1];
+            javab3.innerText= javab[0][2];
+            javab4.innerText= javab[0][3];
+
+            console.log(javab);
+
+            var ic=0;
+
+            var dorost=0;
+
+            function ejra(){           
+                var j1= document.getElementById('j1').checked;
+                var j2= document.getElementById('j2').checked;
+                var j3= document.getElementById('j3').checked;
+                var j4= document.getElementById('j4').checked;
+
+
+                if (ic<4 && j1 == false && j2 == false && j3 == false && j4 == false){
+                    return;
+                }
+
+                if (ic==0 && j4==true) {dorost=dorost + 1;} 
+                if (ic==1 && j1==true) {dorost=dorost + 1;} 
+                if (ic==2 && j2==true) {dorost=dorost + 1;} 
+                if (ic==3 && j2==true) {dorost=dorost + 1;}  
+
+                ic= ic+1;
+
+                console.log(dorost , (ic))
+
+                if (ic>4){
+                    window.location.reload();
+                }
+
+                if (ic>3){
+                soal_html.innerText ="جواب صحیح شما: " + dorost.toString() + ' از '+ ic.toString() + " سوال ";
+                document.getElementById("javabha").style.display='none';
+                document.getElementById("dokme").innerText='آزمون مجدد';
+                }else{
+                soal_html.innerText= soal[ic];
+                javab1.innerText= javab[ic][0];
+                javab2.innerText= javab[ic][1];
+                javab3.innerText= javab[ic][2];
+                javab4.innerText= javab[ic][3];
+                }
+
+                document.getElementById('j1').checked=false;
+                document.getElementById('j2').checked=false;
+                document.getElementById('j3').checked=false;
+                document.getElementById('j4').checked=false;
+            }
+        </script>
+    </body>
+</html>
